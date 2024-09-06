@@ -1,30 +1,27 @@
 import { useState, ReactNode } from "react";
 import { Cell } from "../types/types";
 import MatrixContext from "../contexts/MatrixContext";
-
-const generateInitialMatrix = (m: number, n: number): Cell[][] => {
-  let idCounter = 0;
-  return Array.from({ length: m }, () =>
-    Array.from({ length: n }, () => ({
-      id: idCounter++,
-      amount: Math.floor(Math.random() * 900) + 100,
-    }))
-  );
-};
-
-const generateRow = (m: number, n: number): Cell[] => {
-  let idCounter = m * n;
-  return Array.from({ length: n }, () => ({
-    id: idCounter++,
-    amount: Math.floor(Math.random() * 900) + 100,
-  }));
-};
+import {
+  generateInitialMatrix,
+  generateRow,
+  getClosestCells,
+} from "../components/MatrixTable/matrixTableUtils";
 
 const MatrixContextWrapper = ({ children }: { children: ReactNode }) => {
-  const [matrix, setMatrix] = useState<Cell[][]>(generateInitialMatrix(5, 5));
+  const [currentHoveredCell, setcurrentHoveredCell] = useState<Cell | null>(
+    null
+  );
+
+  const [matrix, setMatrix] = useState<Cell[][]>(
+    generateInitialMatrix({ m: 5, n: 5 })
+  );
+
+  const handleHoverCell = (cell: Cell | null) => {
+    setcurrentHoveredCell((prevState) => (!prevState ? cell : null));
+  };
 
   const addRow = () => {
-    const newRow = generateRow(matrix.length, matrix[0].length);
+    const newRow = generateRow({ m: matrix.length, n: matrix[0].length });
     setMatrix([...matrix, newRow]);
   };
 
@@ -43,9 +40,18 @@ const MatrixContextWrapper = ({ children }: { children: ReactNode }) => {
     setMatrix(newMatrix);
   };
 
+  const closestCells = getClosestCells(currentHoveredCell, matrix);
+
   return (
     <MatrixContext.Provider
-      value={{ matrix, addRow, removeRow, incrementCell }}
+      value={{
+        matrix,
+        addRow,
+        removeRow,
+        incrementCell,
+        handleHoverCell,
+        closestCells,
+      }}
     >
       {children}
     </MatrixContext.Provider>

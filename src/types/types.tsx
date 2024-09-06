@@ -8,4 +8,11 @@ export type MatrixContextType = {
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
   incrementCell: (rowIndex: number, colIndex: number) => void;
+  handleHoverCell: (cell: Cell | null) => void;
+  closestCells: Cell[];
+};
+
+export type GenerateType = {
+  m: number;
+  n: number;
 };

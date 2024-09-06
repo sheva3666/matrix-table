@@ -6,7 +6,7 @@ import PrecentilesRow from "./components/PrecentilesRow/PrecentilesRow";
 import "./MatrixTable.css";
 
 const MatrixTable = () => {
-  const { matrix, addRow } = useMatrix();
+  const { matrix } = useMatrix();
 
   return (
     <>
@@ -16,14 +16,13 @@ const MatrixTable = () => {
         </thead>
         <tbody>
           {matrix.map((row: Cell[], rowIndex: number) => (
-            <MatrixRow row={row} rowIndex={rowIndex} />
+            <MatrixRow key={rowIndex} row={row} rowIndex={rowIndex} />
           ))}
         </tbody>
         <tfoot>
           <PrecentilesRow />
         </tfoot>
       </table>
-      <button onClick={addRow}>Add Row</button>
     </>
   );
 };

@@ -24,6 +24,7 @@ const MatrixRow = ({ rowIndex, row }: MatrixRowProps) => {
     <tr key={rowIndex}>
       {row.map((cell: Cell, columnIndex: number) => (
         <MatrixAmountCell
+          key={columnIndex}
           cell={cell}
           columnIndex={columnIndex}
           rowIndex={rowIndex}

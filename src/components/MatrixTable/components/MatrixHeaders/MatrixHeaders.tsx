@@ -3,7 +3,7 @@ import useMatrix from "../../../../hooks/useMatrix";
 import "./MatrixHeader.css";
 
 const MatrixHeaders = () => {
-  const { matrix } = useMatrix();
+  const { matrix, addRow } = useMatrix();
   return (
     <tr>
       {matrix[0].map((_: any, i: number) => (
@@ -12,6 +12,9 @@ const MatrixHeaders = () => {
         </th>
       ))}
       <th className="table_header-cell">Sum</th>
+      <th className="table_header-cell">
+        <button onClick={addRow}>Add Row</button>
+      </th>
     </tr>
   );
 };
