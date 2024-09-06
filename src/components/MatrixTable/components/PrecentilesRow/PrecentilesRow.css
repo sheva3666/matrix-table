@@ -1,0 +1,11 @@
+.table_row-cell {
+  border: 1px solid white; /* White borders for the table */
+  padding: 8px;
+  text-align: center;
+  color: white; /* White text to contrast the black background */
+  cursor: pointer;
+}
+
+.table_row-cell:hover {
+  background-color: #444; /* Highlight row on hover */
+}

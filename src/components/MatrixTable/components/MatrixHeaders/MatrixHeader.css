@@ -1,0 +1,9 @@
+.table_header-cell {
+  background-color: #333;
+  border: 1px solid white; /* White borders for the table */
+  padding: 8px;
+  text-align: center;
+  color: white; /* White text to contrast the black background */
+  cursor: pointer;
+  max-width: 200px;
+}
