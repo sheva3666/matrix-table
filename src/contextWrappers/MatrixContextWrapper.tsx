@@ -21,7 +21,11 @@ const MatrixContextWrapper = ({ children }: { children: ReactNode }) => {
   };
 
   const addRow = () => {
-    const newRow = generateRow({ m: matrix.length, n: matrix[0].length });
+    const newRow = generateRow(
+      !matrix.length
+        ? { m: 1, n: 5 }
+        : { m: matrix.length, n: matrix[0].length }
+    );
     setMatrix([...matrix, newRow]);
   };
 
